@@ -9,27 +9,26 @@ idioma * add_idioma(idioma *lista, const char *name, char type, int symbols);
 void get_Datos(alien*listaA,planetas*listaP,idioma*listaI);
 
 int main(){
-	
+
 	alien *lista_alien;
 	planetas *lista_planetas;
 	idioma *lista_idiomas;
-	
+
 
 	lista_alien = add_Alien(lista_alien, "Superman", 80, "Kryptonian");
 	lista_planetas = add_Planeta(lista_planetas, "Krypton", 78452, 'Y', 'N');
 	lista_idiomas = add_idioma(lista_idiomas, "Ingles", '9', 26);
 
-
 	get_Datos(lista_alien, lista_planetas, lista_idiomas);
 
-	
+
 
 return 1;
 }
 
 //Declaracion de las funciones//
 alien * add_Alien(alien *lista, const char *name, int ID, const char *esp){
-	
+
 	lista = malloc(sizeof(alien));
 	strcpy(lista->nombre, name);
 	lista->id = ID;
@@ -49,8 +48,8 @@ planetas * add_Planeta(planetas *lista, const char *name, int code, char water, 
 	lista->oxigeno = oxigen;
 
 	return lista;
-	
-	
+
+
 }
 
 idioma * add_idioma(idioma *lista, const char *name, char type, int symbols){
@@ -70,7 +69,7 @@ void get_Datos(alien*listaA,planetas*listaP,idioma*listaI){
 	printf("ID: %d\n",listaA->id);
 	printf("Especie: %s\n",listaA->especie);
 	printf("\n");
-	
+
 	printf("Planeta: \n");
 	printf("Nombre: %s\n",listaP->nombre);
 	printf("Star wars code: %d\n",listaP->star_wars_code);
@@ -83,7 +82,7 @@ void get_Datos(alien*listaA,planetas*listaP,idioma*listaI){
 	printf("Tipo: %c\n",listaI->tipo);
 	printf("Simbolos: %d\n",listaI->simbolos);
 	printf("\n");
-	
+
 }
 
 
