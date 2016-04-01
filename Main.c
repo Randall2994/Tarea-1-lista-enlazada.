@@ -21,7 +21,16 @@ int main(){
 
 	get_Datos(lista_alien, lista_planetas, lista_idiomas);
 
+<<<<<<< HEAD
 
+=======
+	
+	lista_alien->planetas = lista_planetas;
+	lista_alien->idiomas = lista_idiomas;
+
+	printf("Idioma que habla el alien: %s\n", lista_alien->idiomas->nombre);
+	printf("Planeta donde vive el alien: %s\n", lista_alien->planetas->nombre);
+>>>>>>> b8747317dedff37501575229a4ac5d4397f19e51
 
 return 1;
 }
