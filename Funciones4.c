@@ -16,6 +16,11 @@ void add_planeta(alien *head_alien);
 void insertar_P(planeta *head_planeta);
 void printpla(planeta *head_planet);
 
+void add_idioma(alien *head_alien);
+void insertar_I(idioma *head_idioma);
+void printId(idioma *head_idioma);
+
+void menu();
 
 
 void insertar_A_O(alien*head_alien){
@@ -31,7 +36,7 @@ void insertar_A_O(alien*head_alien){
     printf("%s","Digite el tipo de especie: ");
     scanf("%s",nuevo_nodo->especie);
     
-   /* nuevo_nodo->planeta = malloc(sizeof(planeta));
+    nuevo_nodo->planeta = malloc(sizeof(planeta));
     nuevo_nodo->idioma = malloc(sizeof(idioma));
     
     printf("Digite el planeta natal del alien: ");
@@ -53,10 +58,9 @@ void insertar_A_O(alien*head_alien){
     printf("Cantidad de simbolos?: ");
     scanf("%d",&nuevo_nodo->idioma->simbolos);
     printf("Tipo: ");
-    scanf("%s",nuevo_nodo->idioma->tipo);*/
+    scanf("%s",nuevo_nodo->idioma->tipo);
     
-    //ESTO ESTA EN FASE BETA
-    //nuevo_nodo->idioma->planeta = nuevo_nodo->planeta;
+
     
     
     if(tmp == NULL){
@@ -152,8 +156,11 @@ void consultar_ID(alien *head_alien){
     char flag = 0;
     while(tmp!=NULL){
         if(tmp->id == consulta){
-            printf("Se ha encontrado el alien: ");
+            printf("Se ha encontrado el alien: \n");
             printf("%s \n", tmp->nombre);
+            printf("%d \n", tmp->id);
+            printf("%s \n", tmp->especie);
+            
             flag = 1;
             break;
         }
@@ -162,7 +169,7 @@ void consultar_ID(alien *head_alien){
         }
     }
     if(flag==0){
-        printf("No se ha encontrado el alien");
+        printf("No se ha encontrado el alien\n");
     }
     
 }
@@ -179,6 +186,8 @@ alien * consultar_Nombre(alien *head_alien){
         if(strcmp(tmp->nombre,consulta)==0){
             printf("Se ha encontrado el alien: ");
             printf("%s \n", tmp->nombre);
+            printpla(tmp->planeta);
+            printId(tmp->idioma);
             flag = 1;
             return tmp;
             break;
@@ -224,9 +233,90 @@ void insertar_P(planeta *head_planeta){
 
 void printpla(planeta *head_planet){
     planeta *tmp = head_planet;
-    printf("Los nombres de los planetas que ha visitado el carepicha son: \n");
+    printf("Los nombres de los planetas que ha visitado el alien son: \n");
     while(tmp!=NULL){
         printf("%s \n", tmp->nombre);
         tmp = tmp->siguiente;
+    }
+}
+
+void add_idioma(alien *head_alien){
+    alien *current = consultar_Nombre(head_alien);
+    if(current!=NULL){
+        insertar_I(current->idioma);
+    }
+    
+}
+
+
+void insertar_I(idioma *head_idioma){
+    idioma *tmp = head_idioma;
+    while(tmp->siguiente!=NULL){
+        tmp = tmp->siguiente;
+    }
+    tmp->siguiente = malloc(sizeof(idioma));
+    printf("Digite el idioma: ");
+    scanf("%s",tmp->siguiente->nombre);
+    printf("Cantidad de simbolos?: ");
+    scanf("%d",&tmp->siguiente->simbolos);
+    printf("Tipo: ");
+    scanf("%s",tmp->siguiente->tipo);
+    
+}
+
+void printId(idioma *head_idioma){
+    idioma *tmp = head_idioma;
+    printf("Los nombres de los idiomas que sabe el alien son: \n");
+    while(tmp!=NULL){
+        printf("%s \n", tmp->nombre);
+        tmp = tmp->siguiente;
+    }
+}
+
+void menu(){
+    alien *tmp = root;
+    printf("1. Insertar un alien\n");
+    printf("2. Consultar un alien por ID\n");
+    printf("3. Borrar un alien\n");
+    printf("4. Agregar un planeta a un alien\n");
+    printf("5. Agregar un idioma a un alien\n");
+    printf("6. Imprimir lista\n");
+    
+    int opcion;
+    printf("R: ");
+    scanf("%d", &opcion);
+    if(opcion==1){
+        insertar_A_O(tmp);
+        
+        menu();
+        
+    }
+    else if(opcion==2){
+        consultar_ID(tmp);
+        printpla(tmp->planeta);
+        printId(tmp->idioma);
+        menu();
+        
+    }
+    else if(opcion==3){
+        borrar_A(tmp);
+        menu();
+    }
+    else if(opcion==4){
+        add_planeta(tmp);
+        menu();
+        
+    }
+    else if(opcion==5){
+        add_idioma(tmp);
+        menu();
+    }
+    else if(opcion==6){
+        imp_A();
+        menu();
+    }
+    else{
+        printf("Inserta una opcion valida\n");
+        menu();
     }
 }
