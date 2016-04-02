@@ -81,18 +81,17 @@ void insertar_A_O(alien*head_alien){
         }
         else{  
             
-            while(tmp->siguiente != NULL){
-                if( nuevo_nodo->id <= tmp->siguiente->id){
-                    nuevo_nodo->siguiente = tmp->siguiente;
-                    
-                    tmp->siguiente = nuevo_nodo;                    
-                }
-                
+            while(tmp->siguiente != NULL && nuevo_nodo->id >= tmp->siguiente->id){
+                tmp = tmp->siguiente;
             }
+                
+            
+            nuevo_nodo->siguiente = tmp->siguiente;
+            tmp->siguiente = nuevo_nodo;  
 
         }
-          
     }
+          
 }
 
 void imp_A(){
