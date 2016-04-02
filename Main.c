@@ -4,12 +4,8 @@
 
 #include"Funciones4.c"
 
-main(){
+void main(){
     
     
-    insertar_A_O(root);
-    insertar_A_O(root);
-    insertar_A_O(root);
-    insertar_A_O(root);
-    imp_A();
+    menu(root);
 }
